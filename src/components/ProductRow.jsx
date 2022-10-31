@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ProductRow = () => {
+const ProductRow = ({ name, price }) => {
   return (
     <div className='flex justify-between text-lg text-semibold'>
-      <h2>Latte</h2>
-      <h2>4000</h2>
+      <h2>{name}</h2>
+      <h2>{price}</h2>
     </div>
   );
 };

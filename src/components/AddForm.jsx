@@ -1,6 +1,10 @@
 import React from 'react';
 
-const AddForm = () => {
+const AddForm = ({ newProduct, setNewProduct }) => {
+  const handleInputChange = (e) => {
+    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
+  };
+
   return (
     <form>
       <div className='form-control w-full max-w-xs'>
@@ -11,6 +15,9 @@ const AddForm = () => {
           type='text'
           placeholder='Type here'
           className='input input-bordered input-sm w-full max-w-xs'
+          value={newProduct.name}
+          name='name'
+          onChange={handleInputChange}
         />
       </div>
       <div className='form-control w-full max-w-xs'>
@@ -21,6 +28,9 @@ const AddForm = () => {
           type='text'
           placeholder='Type here'
           className='input input-bordered input-sm w-full max-w-xs'
+          value={newProduct.price}
+          name='price'
+          onChange={handleInputChange}
         />
       </div>
       <div className='form-control w-full max-w-xs'>
