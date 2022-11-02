@@ -1,9 +1,10 @@
 import React from 'react';
 
-const AddForm = ({ newProduct, setNewProduct }) => {
-  const handleInputChange = (e) => {
-    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
-  };
+const ProductForm = ({ selectedProduct }) => {
+  console.log(selectedProduct);
+  // const handleInputChange = (e) => {
+  //   setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
+  // };
 
   return (
     <form>
@@ -15,9 +16,9 @@ const AddForm = ({ newProduct, setNewProduct }) => {
           type='text'
           placeholder='Type here'
           className='input input-bordered input-sm w-full max-w-xs'
-          value={newProduct.name}
+          value={selectedProduct.name}
           name='name'
-          onChange={handleInputChange}
+          // onChange={handleInputChange}
         />
       </div>
       <div className='form-control w-full max-w-xs'>
@@ -28,9 +29,9 @@ const AddForm = ({ newProduct, setNewProduct }) => {
           type='text'
           placeholder='Type here'
           className='input input-bordered input-sm w-full max-w-xs'
-          value={newProduct.price}
+          value={selectedProduct.price}
           name='price'
-          onChange={handleInputChange}
+          // onChange={handleInputChange}
         />
       </div>
       <div className='form-control w-full max-w-xs'>
@@ -51,4 +52,4 @@ const AddForm = ({ newProduct, setNewProduct }) => {
   );
 };
 
-export default AddForm;
+export default ProductForm;
