@@ -53,12 +53,6 @@ const STORAGE_KEY = 'menuapp.products';
 
 function App() {
   const [products, setProducts] = useState(sampleProducts);
-  const [newProduct, setNewProduct] = useState({
-    id: uuid(),
-    name: '',
-    price: '',
-    category: '',
-  });
   const [selectedProductId, setSelectedProductId] = useState();
   const selectedProduct = products.find(
     (product) => product.id === selectedProductId
@@ -79,10 +73,24 @@ function App() {
     handleProductDelete,
     handleProductAdd,
     handleProductSelect,
+    handleProductDataChange,
   };
 
   function handleProductAdd() {
+    const newProduct = {
+      id: uuid(),
+      name: '',
+      price: '',
+      category: '',
+    };
     setProducts([...products, newProduct]);
+  }
+
+  function handleProductDataChange(id, productData) {
+    const newProducts = [...products];
+    const productIndex = newProducts.findIndex((product) => product.id === id);
+    newProducts[productIndex] = productData;
+    setProducts(newProducts);
   }
 
   function handleProductDelete(id) {

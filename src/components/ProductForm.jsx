@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MenuContext } from '../App';
 
 const ProductForm = ({ selectedProduct }) => {
-  console.log(selectedProduct);
+  const { handleProductDataChange } = useContext(MenuContext);
+
   // const handleInputChange = (e) => {
   //   setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
   // };
@@ -26,7 +28,7 @@ const ProductForm = ({ selectedProduct }) => {
           <span className='label-text'>Price</span>
         </label>
         <input
-          type='text'
+          type='number'
           placeholder='Type here'
           className='input input-bordered input-sm w-full max-w-xs'
           value={selectedProduct.price}
