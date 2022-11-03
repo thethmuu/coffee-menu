@@ -66,7 +66,6 @@ const ProductForm = ({ selectedProduct }) => {
           ))}
         </select>
       </div>
-      <button className='btn btn-sm btn-primary mt-4'>Save</button>
     </form>
   );
 };
