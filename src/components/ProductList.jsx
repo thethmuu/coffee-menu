@@ -19,7 +19,6 @@ const ProductList = ({ products }) => {
           Add Product
         </button>
       </div>
-      ;
     </>
   );
 };

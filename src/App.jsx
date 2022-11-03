@@ -5,6 +5,21 @@ import ProductRow from './components/ProductRow';
 import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
 
+export const categories = [
+  {
+    id: 1,
+    name: 'Drinks 🧃',
+  },
+  {
+    id: 2,
+    name: 'Cake 🍰',
+  },
+  {
+    id: 3,
+    name: 'Pizza 🍕',
+  },
+];
+
 const sampleProducts = [
   {
     id: 1,
@@ -32,20 +47,6 @@ const sampleProducts = [
   },
 ];
 
-const categories = [
-  {
-    id: 1,
-    name: 'Drinks',
-  },
-  {
-    id: 2,
-    name: 'Cake',
-  },
-  {
-    id: 3,
-    name: 'Pizza',
-  },
-];
 
 export const MenuContext = createContext();
 
@@ -106,7 +107,7 @@ function App() {
       <main className='bg-gray-100 h-screen'>
         <div className='container h-full flex bg-white mx-auto'>
           {/* add form */}
-          <div className='w-1/2 p-4'>
+          <div className='w-1/2 p-4 flex justify-center'>
             {selectedProduct && (
               <ProductForm selectedProduct={selectedProduct} />
             )}
