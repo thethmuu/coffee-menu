@@ -32,18 +32,21 @@ const sampleProducts = [
   },
 ];
 
-const categories = [
+// imperative (how)
+// declarative (what)
+
+export const categories = [
   {
     id: 1,
-    name: 'Drinks',
+    name: 'Drinks 🧃',
   },
   {
     id: 2,
-    name: 'Cake',
+    name: 'Cake 🍰',
   },
   {
     id: 3,
-    name: 'Pizza',
+    name: 'Pizza 🍕',
   },
 ];
 
@@ -54,6 +57,7 @@ const STORAGE_KEY = 'menuapp.products';
 function App() {
   const [products, setProducts] = useState(sampleProducts);
   const [selectedProductId, setSelectedProductId] = useState();
+  const [showError, setShowError] = useState(false);
   const selectedProduct = products.find(
     (product) => product.id === selectedProductId
   );
@@ -84,17 +88,20 @@ function App() {
       category: '',
     };
     setProducts([...products, newProduct]);
+    setSelectedProductId(newProduct.id);
   }
 
-  function handleProductDataChange(id, productData) {
+  function handleProductDataChange(id, updatedData) {
     const newProducts = [...products];
     const productIndex = newProducts.findIndex((product) => product.id === id);
-    newProducts[productIndex] = productData;
+    newProducts[productIndex] = updatedData;
     setProducts(newProducts);
   }
 
   function handleProductDelete(id) {
     setProducts(products.filter((product) => product.id !== id));
+    setShowError(true);
+    setTimeout(() => setShowError(false), 2000);
   }
 
   function handleProductSelect(id) {
@@ -106,7 +113,7 @@ function App() {
       <main className='bg-gray-100 h-screen'>
         <div className='container h-full flex bg-white mx-auto'>
           {/* add form */}
-          <div className='w-1/2 p-4'>
+          <div className='w-1/2 p-4 flex justify-center'>
             {selectedProduct && (
               <ProductForm selectedProduct={selectedProduct} />
             )}
@@ -117,6 +124,15 @@ function App() {
           </div>
         </div>
       </main>
+      {showError && (
+        <div className='toast toast-top toast-end'>
+          <div className='alert alert-error'>
+            <div>
+              <span>Product deleted 😃</span>
+            </div>
+          </div>
+        </div>
+      )}
     </MenuContext.Provider>
   );
 }
