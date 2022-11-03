@@ -47,7 +47,6 @@ const sampleProducts = [
   },
 ];
 
-
 export const MenuContext = createContext();
 
 const STORAGE_KEY = 'menuapp.products';
@@ -85,6 +84,7 @@ function App() {
       category: '',
     };
     setProducts([...products, newProduct]);
+    setSelectedProductId(newProduct.id);
   }
 
   function handleProductDataChange(id, productData) {
