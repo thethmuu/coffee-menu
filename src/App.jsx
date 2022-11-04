@@ -5,21 +5,6 @@ import ProductRow from './components/ProductRow';
 import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
 
-export const categories = [
-  {
-    id: 1,
-    name: 'Drinks 🧃',
-  },
-  {
-    id: 2,
-    name: 'Cake 🍰',
-  },
-  {
-    id: 3,
-    name: 'Pizza 🍕',
-  },
-];
-
 const sampleProducts = [
   {
     id: 1,
@@ -47,6 +32,24 @@ const sampleProducts = [
   },
 ];
 
+// imperative (how)
+// declarative (what)
+
+export const categories = [
+  {
+    id: 1,
+    name: 'Drinks 🧃',
+  },
+  {
+    id: 2,
+    name: 'Cake 🍰',
+  },
+  {
+    id: 3,
+    name: 'Pizza 🍕',
+  },
+];
+
 export const MenuContext = createContext();
 
 const STORAGE_KEY = 'menuapp.products';
@@ -54,6 +57,7 @@ const STORAGE_KEY = 'menuapp.products';
 function App() {
   const [products, setProducts] = useState(sampleProducts);
   const [selectedProductId, setSelectedProductId] = useState();
+  const [showError, setShowError] = useState(false);
   const selectedProduct = products.find(
     (product) => product.id === selectedProductId
   );
@@ -87,15 +91,17 @@ function App() {
     setSelectedProductId(newProduct.id);
   }
 
-  function handleProductDataChange(id, productData) {
+  function handleProductDataChange(id, updatedData) {
     const newProducts = [...products];
     const productIndex = newProducts.findIndex((product) => product.id === id);
-    newProducts[productIndex] = productData;
+    newProducts[productIndex] = updatedData;
     setProducts(newProducts);
   }
 
   function handleProductDelete(id) {
     setProducts(products.filter((product) => product.id !== id));
+    setShowError(true);
+    setTimeout(() => setShowError(false), 2000);
   }
 
   function handleProductSelect(id) {
@@ -118,6 +124,15 @@ function App() {
           </div>
         </div>
       </main>
+      {showError && (
+        <div className='toast toast-top toast-end'>
+          <div className='alert alert-error'>
+            <div>
+              <span>Product deleted 😃</span>
+            </div>
+          </div>
+        </div>
+      )}
     </MenuContext.Provider>
   );
 }

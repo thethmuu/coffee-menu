@@ -10,6 +10,8 @@ const ProductGroup = ({ product }) => {
   return (
     <div className='mt-4'>
       <div className='flex justify-between text-2xl text-bold'>
+        {/* optional chaining */}
+        {/* {currentCategory !== undefined && currentCategory.name} */}
         <h2>{currentCategory?.name}</h2>
         <h2>Price</h2>
       </div>
