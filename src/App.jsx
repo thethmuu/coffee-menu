@@ -1,9 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { v4 as uuid } from 'uuid';
 import ProductGroup from './components/ProductGroup';
 import ProductRow from './components/ProductRow';
 import ProductForm from './components/ProductForm';
 import ProductList from './components/ProductList';
+import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 
 const sampleProducts = [
   {
@@ -110,6 +112,38 @@ function App() {
 
   return (
     <MenuContext.Provider value={menuContextValue}>
+      <Router>
+        <nav className='container py-2'>
+          <ul className='flex justify-around'>
+            <Link to='/'>Home</Link>
+            <Link to='/courses'>Courses</Link>
+            <Link to='/about-us'>About Us</Link>
+          </ul>
+        </nav>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Home
+                selectedProduct={selectedProduct}
+                products={products}
+                showError={showError}
+              />
+            }
+          />
+          <Route path='/courses' element={<Courses />} />
+          <Route path='/about-us' element={<AboutUs />} />
+        </Routes>
+      </Router>
+    </MenuContext.Provider>
+  );
+}
+
+export default App;
+
+function Home({ selectedProduct, products, showError }) {
+  return (
+    <>
       <main className='bg-gray-100 h-screen'>
         <div className='container h-full flex bg-white mx-auto'>
           {/* add form */}
@@ -133,8 +167,25 @@ function App() {
           </div>
         </div>
       )}
-    </MenuContext.Provider>
+    </>
   );
 }
 
-export default App;
+const Courses = () => (
+  <motion.h1
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    className='container mx-auto text-center bg-gray-200'
+  >
+    Courses
+  </motion.h1>
+);
+const AboutUs = () => (
+  <motion.h1
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    className='container mx-auto text-center bg-gray-200'
+  >
+    About Us
+  </motion.h1>
+);

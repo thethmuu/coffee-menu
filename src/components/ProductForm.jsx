@@ -21,6 +21,7 @@ const ProductForm = ({ selectedProduct }) => {
         <input
           type='text'
           placeholder='Type here'
+          autoFocus
           className='input input-bordered input-sm w-full'
           value={selectedProduct.name}
           name='name'

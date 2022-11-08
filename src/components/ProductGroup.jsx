@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import ProductRow from './ProductRow';
 import { categories } from '../App';
 
