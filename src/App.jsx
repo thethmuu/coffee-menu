@@ -1,9 +1,8 @@
 import { createContext, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import ProductGroup from './components/ProductGroup';
-import ProductRow from './components/ProductRow';
-import ProductForm from './components/ProductForm';
-import ProductList from './components/ProductList';
+import { Routes, Route, Link } from 'react-router-dom';
+import Admin from './pages/Admin';
+import User from './pages/User';
 
 const sampleProducts = [
   {
@@ -110,31 +109,41 @@ function App() {
 
   return (
     <MenuContext.Provider value={menuContextValue}>
-      <main className='bg-gray-100 h-screen'>
-        <div className='container h-full flex bg-white mx-auto'>
-          {/* add form */}
-          <div className='w-1/2 p-4 flex justify-center'>
-            {selectedProduct && (
-              <ProductForm selectedProduct={selectedProduct} />
-            )}
-          </div>
-          {/* preview UI */}
-          <div className='w-1/2 p-4 flex justify-center preview'>
-            <ProductList products={products} />
-          </div>
-        </div>
-      </main>
-      {showError && (
-        <div className='toast toast-top toast-end'>
-          <div className='alert alert-error'>
-            <div>
-              <span>Product deleted 😃</span>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* <Admin /> */}
+      <nav className='container py-2'>
+        <ul className='flex justify-around text-blue-500'>
+          <Link to='/'>User</Link>
+          <Link to='admin'>Admin</Link>
+        </ul>
+      </nav>
+      {/* where our component will render  */}
+      <Routes>
+        <Route path='/' element={<User products={products} />} />
+        <Route
+          path='/admin'
+          element={
+            <Admin
+              selectedProduct={selectedProduct}
+              products={products}
+              showError={showError}
+            />
+          }
+        />
+      </Routes>
     </MenuContext.Provider>
   );
 }
 
 export default App;
+
+function Home() {
+  return <div>Home</div>;
+}
+
+function AboutUs() {
+  return <div>About Us</div>;
+}
+
+function Courses() {
+  return <div>Courses</div>;
+}

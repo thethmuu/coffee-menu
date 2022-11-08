@@ -2,7 +2,7 @@ import React from 'react';
 import ProductRow from './ProductRow';
 import { categories } from '../App';
 
-const ProductGroup = ({ product }) => {
+const ProductGroup = ({ product, isAdmin }) => {
   const currentCategory = categories.find(
     (category) => category.id === product.category
   );
@@ -17,7 +17,7 @@ const ProductGroup = ({ product }) => {
       </div>
       <div className='collapse'>
         <input type='checkbox' />
-        <ProductRow product={product} />
+        <ProductRow product={product} isAdmin={isAdmin} />
       </div>
     </div>
   );
