@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import ProductRow from './ProductRow';
 import { categories } from '../App';
 
@@ -8,7 +9,7 @@ const ProductGroup = ({ product, isAdmin }) => {
   );
 
   return (
-    <div className='mt-4'>
+    <motion.div whileHover={{ scale: 1.05 }} className='mt-4'>
       <div className='flex justify-between text-2xl text-bold'>
         {/* optional chaining */}
         {/* {currentCategory !== undefined && currentCategory.name} */}
@@ -19,7 +20,7 @@ const ProductGroup = ({ product, isAdmin }) => {
         <input type='checkbox' />
         <ProductRow product={product} isAdmin={isAdmin} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

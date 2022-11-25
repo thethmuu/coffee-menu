@@ -8,7 +8,7 @@ const ProductList = ({ products, isAdmin = false }) => {
 
   return (
     <>
-      <div className='w-2/3 mx-auto'>
+      <div className='md:w-2/3 mx-auto'>
         <div className='flex justify-center items-center'>
           <img src={logo} alt='Logo' className='w-24 h-24' />
         </div>

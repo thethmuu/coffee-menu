@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import ProductForm from '../components/ProductForm';
 import ProductList from '../components/ProductList';
 
@@ -6,18 +7,23 @@ const Admin = ({ selectedProduct, products, showError }) => {
   return (
     <>
       <main className='bg-gray-100 h-screen'>
-        <div className='container h-full flex bg-white mx-auto'>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className='container h-full flex flex-col md:flex-row bg-white mx-auto'
+        >
           {/* add form */}
-          <div className='w-1/2 p-4 flex justify-center'>
+          <div className='md:w-1/2 p-4 flex justify-center'>
             {selectedProduct && (
               <ProductForm selectedProduct={selectedProduct} />
             )}
           </div>
           {/* preview UI */}
-          <div className='w-1/2 p-4 flex justify-center preview'>
+          <div className='md:w-1/2 p-4 flex justify-center preview'>
             <ProductList products={products} isAdmin={true} />
           </div>
-        </div>
+        </motion.div>
       </main>
       {showError && (
         <div className='toast toast-top toast-end'>

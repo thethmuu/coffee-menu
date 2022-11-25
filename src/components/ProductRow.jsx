@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { motion } from 'framer-motion';
 import { MenuContext } from '../App';
 
 const ProductRow = ({ product, isAdmin }) => {
@@ -6,12 +7,16 @@ const ProductRow = ({ product, isAdmin }) => {
 
   return (
     <>
-      <div className='collapse-title text-xl font-medium'>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className='collapse-title text-xl font-medium'
+      >
         <div className='flex justify-between text-lg text-semibold'>
           <h2>{product.name}</h2>
           <h2>{product.price}</h2>
         </div>
-      </div>
+      </motion.div>
       {isAdmin && (
         <div className='collapse-content flex justify-end'>
           <button
